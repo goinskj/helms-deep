@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <%- include('./partials/head.ejs', {title: 'Furever Friends'}) %>
+    <%- include('./partials/head.ejs', {title: 'Helms Deep'}) %>
     <link rel="stylesheet" href="/styles/home.css">
 </head>
 
@@ -11,32 +11,32 @@
 
     <main>
         <section class="hero">
-            <h2>Find Your New Best Friend</h2>
+            <h2>Associate formations with deep balls.</h2>
             <a href="/pets" class="btn">Adopt Now!</a>
         </section>
 
         <section class="about">
             <h2>About Us</h2>
-            <p>Furever Friends is a non-profit organization dedicated to finding loving homes for animals in need. We
-                work with shelters and rescue groups across the country to help connect pets with their new families.
+            <p>Welcome to Helms Deep: your premier solution for defensive personnel seeking an edge in the strategic world of football. Helms Deep is a cutting-edge tool designed to empower defensive teams by providing insights into opposing offensive formations, with a specific focus on deep ball plays.
             </p>
             <a href="/about" class="btn">Learn More</a>
         </section>
 
-        <section class="featured-pets">
-            <h2>Featured Pets</h2>
-            <ul class="pet-grid">
-                <% for (let pet of pets) { %>
+        <section class="featured-teams">
+            <h2>Featured Teams</h2>
+            <ul class="team-grid">
+                <% for (let team of teams) { %>
                 <li>
                     <figure>
-                        <img src="<%= pet.photo %>" alt="Kitten">
+                        <img src="<%= team.photo %>" alt="mascott">
                     </figure>
                     <figcaption>
                         <div class="featured-info">
-                            <h3><%= pet.name %></h3>
-                            <p>Age: <%= pet.age %> yr(s)</p>
+                            <h3><%= team.name %></h3>
+                            <p>City: <%= team.city %></p>
+                            <p>State: <%= team.state %></p>
                         </div>
-                        <a href="/pets/<%= pet._id %>" class="btn">Learn More</a>
+                        <a href="/teams/<%= team._id %>" class="btn">Learn More</a>
                     </figcaption>
                 </li>
                 <% } %>

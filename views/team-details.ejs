@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs', {title: `${team.name} | Helms Deep`}) %>
+    <link rel="stylesheet" href="/styles/team-details.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div>
+        <img src="<%= team.photo %>">
+        <h2 class="team-name"><%= team.name %></h2>
+        <section>
+            <p><strong>Mascott:</strong> <%= team.mascott %></p>
+            <p><strong>City:</strong> <%= team.city %></p>
+            <p><strong>State:</strong> <%= team.state %></p>
+        </section>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs', {title: 'Helms Deep'}) %>
+    <link rel="stylesheet" href="/styles/team-index.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <section class="hero">
+        <h2>Teams</h2>
+        <h3>Check out these teams' formations with deep ball outcomes.</h3>
+    </section>
+
+    <main>
+        <section class="listings">
+            <ul>
+                <% for (let team of teams) { %>
+                <li>
+                    <figure>
+                        <img src="<%= team.photo %>">
+                        <figcaption>
+                            <h4><%= team.name %></h4>
+                            <p><%= team.city %>, <%= team.state %></p>
+                            <a href="/teams/<%= team._id %>">Learn More</a>
+                        </figcaption>
+                    </figure>
+                </li>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>
