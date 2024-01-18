@@ -4,7 +4,6 @@ NOTE: Remember that all routes on this page are prefixed with `localhost:3000/te
 ---------------------------------------------------------------------------------------
 */
 
-
 /* Require modules
 --------------------------------------------------------------- */
 const express = require('express')
@@ -21,17 +20,25 @@ const db = require('../models')
 // Index Route (GET/Read): Will display all teams
 router.get('/', function (req, res) {
     db.Teams.find({})
-        .then(teams => res.json(teams))
+        .then(teams => {
+            res.render('team-index', {
+                teams: teams
+            })
+        })
 })
 
-
-// Show Route (GET/Read): Will display an individual team document
+// Show Route (GET/Read): Will display an individual pet document
 // using the URL parameter (which is the document _id)
 router.get('/:id', function (req, res) {
     db.Teams.findById(req.params.id)
-        .then(team => res.json(team))
+        .then(team => {
+            res.render('team-details', {
+                team: team
+            })
+        })
         .catch(() => res.send('404 Error: Page Not Found'))
 })
+
 
 
 /* Export these routes so that they are accessible in `server.js`

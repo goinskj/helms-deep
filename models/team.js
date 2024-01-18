@@ -7,7 +7,9 @@ const teamSchema = new mongoose.Schema({
     mascott: { type: String, required: true },
     photo: { type: String, required: true },
     city: { type: String, required: true },
-    state: { type: String, maxLength: 2, required: true }
+    state: { type: String, maxLength: 2, required: true },
+    isFeatured: { type: Boolean, default: false },
+    dateAdded: { type: Date, default: Date.now }
 });
 
 // Export the schema as a Monogoose model. 

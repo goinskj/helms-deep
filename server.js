@@ -46,8 +46,14 @@ app.use(connectLiveReload());
 /* Mount routes
 --------------------------------------------------------------- */
 app.get('/', function (req, res) {
-    res.send('Helms Deep')
+    db.Teams.find({ isFeatured: true })
+        .then(teams => {
+            res.render('home', {
+                teams: teams
+            })
+        })
 });
+
 
 // When a GET request is sent to `/seed`, the team collection is seeded
 app.get(`/seed`, function( req, res) {
