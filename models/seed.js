@@ -2,7 +2,7 @@ const teamSeeds = [
     {
       name: 'Team A',
       mascott: 'Lion',
-      photo: "https://3.bp.blogspot.com/-AI2fhTCbWQ4/T26wCp9yk3I/AAAAAAAACTI/6O88_7A0txo/s1600/golden-retriever-picture.jpg",
+      photo: "https://cdn.vox-cdn.com/thumbor/tYXL5-7FP1pC5khub-BG0wBF8jA=/0x0:1408x788/1200x0/filters:focal(0x0:1408x788):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/11682049/JAX_2.png",
       city: 'City1',
       state: 'CA',
       isFeatured: true,
@@ -11,7 +11,7 @@ const teamSeeds = [
     {
       name: 'Team B',
       mascott: 'Eagle',
-      photo: "https://www.mystart.com/blog/wp-content/uploads/shutterstock_262571516-e1520615420194.jpg",
+      photo: "https://throwdeeppublishing.com/cdn/shop/articles/c2e7f65e-e078-4b95-a856-7bee6ce2eff3_1200x1200.jpg?v=1647695250",
       city: 'City2',
       state: 'NY',
       isFeatured: false,
@@ -20,7 +20,7 @@ const teamSeeds = [
     {
       name: 'Team C',
       mascott: 'Bear',
-      photo: "https://www.mybestfrienddogcare.co.uk/wp-content/uploads/2019/12/My-Best-Friend-64-scaled.jpg",
+      photo: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F81463bf1-6bad-4dc3-ae91-ec434b4272c8_1768x864.png",
       city: 'City3',
       state: 'TX',
       isFeatured: true,
