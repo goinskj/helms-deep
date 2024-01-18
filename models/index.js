@@ -12,6 +12,6 @@ db.on('connected', function () {
 
 // Export models and seed data to `server.js`
 module.exports = {
-    Teams: require('./team'),
+    Team: require('./team'),
     seedTeams: require('./seed')
 }

@@ -14,7 +14,7 @@ const teamSeeds = [
       photo: "https://throwdeeppublishing.com/cdn/shop/articles/c2e7f65e-e078-4b95-a856-7bee6ce2eff3_1200x1200.jpg?v=1647695250",
       city: 'City2',
       state: 'NY',
-      isFeatured: false,
+      isFeatured: true,
       dateAdded: "2022-11-11T10:00:00.000Z"
     },
     {

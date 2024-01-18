@@ -51,28 +51,36 @@ app.use(express.urlencoded({ extended: true }));
 /* Mount routes
 --------------------------------------------------------------- */
 app.get('/', function (req, res) {
-    db.Teams.find({ isFeatured: true })
+    db.Team.find({ isFeatured: true })
         .then(teams => {
             res.render('home', {
                 teams: teams
             })
         })
-});
+})
 
+app.get('/about', function (req, res) {
+    res.send('You\'ve hit the about route')
+})
 
 // When a GET request is sent to `/seed`, the team collection is seeded
 app.get(`/seed`, function( req, res) {
     // Remove any existing teams
-    db.Teams.deleteMany({})
+    db.Team.deleteMany({})
         .then(removedTeams => {
             console.log(`Removed ${removedTeams.deletedCount} teams`)
             // Seed the teams collection with the seed data
-            db.Teams.insertMany(db.seedTeams)
+            db.Team.insertMany(db.seedTeams)
                 .then(addedTeams => {
                     console.log(`Added ${addedTeams.length} teams to the database`)
                     res.json(addedTeams)
                 })
     })
+})
+
+// The "catch-all" route: Runs for any other URL that doesn't match the above routes
+app.get('*', function (req, res) {
+    res.send('404 Error: Page Not Found')
 })
 
 // This tells our app to look at the `controllers/teams.js` file 

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const teamSchema = new mongoose.Schema({
     name: { type: String, required: true },
     mascott: { type: String, required: true },
-    photo: { type: String, required: true },
+    photo: { type: String },
     city: { type: String, required: true },
     state: { type: String, maxLength: 2, required: true },
     isFeatured: { type: Boolean, default: false },
