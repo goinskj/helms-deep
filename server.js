@@ -41,6 +41,11 @@ app.set('views', path.join(__dirname, 'views'));
 --------------------------------------------------------------- */
 app.use(express.static('public'))
 app.use(connectLiveReload());
+// Body parser: used for POST/PUT/PATCH routes: 
+// this will take incoming strings from the body that are URL encoded and parse them 
+// into an object that can be accessed in the request parameter as a property called body (req.body).
+app.use(express.urlencoded({ extended: true }));
+
 
 
 /* Mount routes

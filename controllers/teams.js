@@ -14,9 +14,15 @@ const router = express.Router()
 --------------------------------------------------------------- */
 const db = require('../models')
 
-
 /* Routes
 --------------------------------------------------------------- */
+
+// New Route (GET/Read): This route renders a form 
+// which the user will fill out to POST (create) a new location
+router.get('/new', (req, res) => {
+    res.send('You\'ve hit the new route!')
+})
+
 // Index Route (GET/Read): Will display all teams
 router.get('/', function (req, res) {
     db.Teams.find({})
