@@ -63,3 +63,7 @@ figcaption {
 .listings li a:hover {
     background-color: #555;
 }
+
+.btn a {
+    color: #fff;
+}

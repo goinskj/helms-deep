@@ -17,12 +17,6 @@ const db = require('../models')
 /* Routes
 --------------------------------------------------------------- */
 
-// New Route (GET/Read): This route renders a form 
-// which the user will fill out to POST (create) a new location
-router.get('/new', (req, res) => {
-    res.send('You\'ve hit the new route!')
-})
-
 // Index Route (GET/Read): Will display all teams
 router.get('/', function (req, res) {
     db.Team.find({})
@@ -43,6 +37,12 @@ router.get('/:id', function (req, res) {
             })
         })
         .catch(() => res.send('404 Error: Page Not Found'))
+})
+
+// New Route (GET/Read): This route renders a form 
+// which the user will fill out to POST (create) a new location
+router.get('/new', (req, res) => {
+    res.send('You\'ve hit the new route!')
 })
 
 // Create Route (POST/Create): This route receives the POST request sent from the new route,
@@ -71,8 +71,6 @@ router.delete('/:id', (req, res) => {
     db.Team.findByIdAndDelete(req.params.id)
         .then(team => res.send('You\'ve deleted pet ' + team._id))
 })
-
-
 
 
 /* Export these routes so that they are accessible in `server.js`

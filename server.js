@@ -70,6 +70,10 @@ app.get('/about', function (req, res) {
     res.send('You\'ve hit the about route')
 })
 
+// This tells our app to look at the `controllers/teams.js` file 
+// to handle all routes that begin with `localhost:3000/teams`
+app.use('/teams', teamsCtrl)
+
 // When a GET request is sent to `/seed`, the team collection is seeded
 if (process.env.ON_HEROKU === 'false') {
     app.get(`/seed`, function( req, res) {
@@ -86,10 +90,6 @@ if (process.env.ON_HEROKU === 'false') {
         })
     })
 }
-
-// This tells our app to look at the `controllers/teams.js` file 
-// to handle all routes that begin with `localhost:3000/teams`
-app.use('/teams', teamsCtrl)
 
 // The "catch-all" route: Runs for any other URL that doesn't match the above routes
 app.get('*', function (req, res) {
