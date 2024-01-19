@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <%- include('./partials/head.ejs', {title: 'Add a Team | Helms Deep'}) %>
+    <%- include('./partials/head.ejs', {title: `Edit ${team.name} | Helms Deep`}) %>
     <link rel="stylesheet" href="/styles/team-form.css">
 </head>
 
@@ -10,23 +10,22 @@
     <%- include('./partials/nav.ejs') %>
 
     <section class="hero">
-        <h2>Create a Team</h2>
+        <h2>Edit a Team</h2>
         <h4><i>Helping defenses anticipate deep balls, one snap at a time</i></h4>
     </section>
 
-    <form method="POST" action="/pets">
+    <form method="POST" action="/teams/<%= team._id %>?_method=PUT">
         <!-- Name input -->
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" value="<%= team.name %>" required>
         <br>
         <!-- Mascott input -->
         <label for="mascott">Mascott:</label>
-        <input type="text" id="mascott" name="mascott" required>
+        <input type="text" id="mascott" name="mascott" value="<%= team.mascott %>" required>
         <br>
-        
         <!-- City input -->
         <label for="city">City:</label>
-        <input type="text" id="city" name="city" required>
+        <input type="text" id="city" name="city" value="<%= pet.city %>" required>
         <br>
         <!-- State input -->
         <label for="state">State or province:</label>
@@ -103,7 +102,7 @@
         <br>
         <!-- Photo input -->
         <label for="photo">Photo (URL):</label>
-        <input type="text" id="photo" name="photo" required>
+        <input type="text" id="photo" name="photo" value="<%= pet.photo %>" required>
         <br>
     </form>
 
