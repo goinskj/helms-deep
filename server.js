@@ -42,18 +42,18 @@ app.set('views', path.join(__dirname, 'views'));
 /* Middleware (app.use)
 --------------------------------------------------------------- */
 // Detect if running in a dev environment
-if (process.env.ON_HEROKU === 'false') {
-    // Configure the app to refresh the browser when nodemon restarts
-    const liveReloadServer = livereload.createServer();
-    liveReloadServer.server.once("connection", () => {
-        // wait for nodemon to fully restart before refreshing the page
-        setTimeout(() => {
-        liveReloadServer.refresh("/");
-        }, 100);
-    });
-    app.use(connectLiveReload());
-}
-
+// if (process.env.ON_HEROKU === 'false') {
+//     // Configure the app to refresh the browser when nodemon restarts
+//     const liveReloadServer = livereload.createServer();
+//     liveReloadServer.server.once("connection", () => {
+//         // wait for nodemon to fully restart before refreshing the page
+//         setTimeout(() => {
+//         liveReloadServer.refresh("/");
+//         }, 100);
+//     });
+//     app.use(connectLiveReload());
+// }
+app.use(connectLiveReload());
 // Body parser: used for POST/PUT/PATCH routes: 
 // this will take incoming strings from the body that are URL encoded and parse them 
 // into an object that can be accessed in the request parameter as a property called body (req.body).
@@ -95,14 +95,14 @@ if (process.env.ON_HEROKU === 'false') {
     })
 }
 
+// This tells our app to look at the `controllers/teams.js` file 
+// to handle all routes that begin with `localhost:3000/teams`
+app.use('/teams', teamsCtrl)
+
 // The "catch-all" route: Runs for any other URL that doesn't match the above routes
 app.get('*', function (req, res) {
     res.send('404 Error: Page Not Found')
 })
-
-// This tells our app to look at the `controllers/teams.js` file 
-// to handle all routes that begin with `localhost:3000/teams`
-app.use('/teams', teamsCtrl)
 
 /* Tell the app to listen on the specified port
 --------------------------------------------------------------- */
