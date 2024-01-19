@@ -5,6 +5,8 @@ const path = require('path');
 const express = require('express');
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
+const methodOverride = require('method-override');
+
 
 
 /* Require the db connection, models, and seed data
@@ -39,13 +41,26 @@ app.set('views', path.join(__dirname, 'views'));
 
 /* Middleware (app.use)
 --------------------------------------------------------------- */
-app.use(express.static('public'))
-app.use(connectLiveReload());
+// Detect if running in a dev environment
+if (process.env.ON_HEROKU === 'false') {
+    // Configure the app to refresh the browser when nodemon restarts
+    const liveReloadServer = livereload.createServer();
+    liveReloadServer.server.once("connection", () => {
+        // wait for nodemon to fully restart before refreshing the page
+        setTimeout(() => {
+        liveReloadServer.refresh("/");
+        }, 100);
+    });
+    app.use(connectLiveReload());
+}
+
 // Body parser: used for POST/PUT/PATCH routes: 
 // this will take incoming strings from the body that are URL encoded and parse them 
 // into an object that can be accessed in the request parameter as a property called body (req.body).
 app.use(express.urlencoded({ extended: true }));
-
+app.use(express.static('public'))
+// Allows us to interpret POST requests from the browser as another request type: DELETE, PUT, etc.
+app.use(methodOverride('_method'));
 
 
 /* Mount routes
@@ -64,19 +79,21 @@ app.get('/about', function (req, res) {
 })
 
 // When a GET request is sent to `/seed`, the team collection is seeded
-app.get(`/seed`, function( req, res) {
-    // Remove any existing teams
-    db.Team.deleteMany({})
-        .then(removedTeams => {
-            console.log(`Removed ${removedTeams.deletedCount} teams`)
-            // Seed the teams collection with the seed data
-            db.Team.insertMany(db.seedTeams)
-                .then(addedTeams => {
-                    console.log(`Added ${addedTeams.length} teams to the database`)
-                    res.json(addedTeams)
-                })
+if (process.env.ON_HEROKU === 'false') {
+    app.get(`/seed`, function( req, res) {
+        // Remove any existing teams
+        db.Team.deleteMany({})
+            .then(removedTeams => {
+                console.log(`Removed ${removedTeams.deletedCount} teams`)
+                // Seed the teams collection with the seed data
+                db.Team.insertMany(db.seedTeams)
+                    .then(addedTeams => {
+                        console.log(`Added ${addedTeams.length} teams to the database`)
+                        res.json(addedTeams)
+                    })
+        })
     })
-})
+}
 
 // The "catch-all" route: Runs for any other URL that doesn't match the above routes
 app.get('*', function (req, res) {
