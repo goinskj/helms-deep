@@ -25,7 +25,7 @@
         <br>
         <!-- City input -->
         <label for="city">City:</label>
-        <input type="text" id="city" name="city" value="<%= pet.city %>" required>
+        <input type="text" id="city" name="city" value="<%= team.city %>" required>
         <br>
         <!-- State input -->
         <label for="state">State or province:</label>
@@ -102,8 +102,10 @@
         <br>
         <!-- Photo input -->
         <label for="photo">Photo (URL):</label>
-        <input type="text" id="photo" name="photo" value="<%= pet.photo %>" required>
+        <input type="text" id="photo" name="photo" value="<%= team.photo %>" required>
         <br>
+        <!-- Submit button -->
+        <button class="btn" type="submit">Update Team</button>
     </form>
 
     <%- include('./partials/footer.ejs') %>

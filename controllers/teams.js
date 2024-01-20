@@ -36,6 +36,18 @@ router.get('/:id', function (req, res) {
         .catch(() => res.send('404 Error: Page Not Found'))
 })
 
+// Show Route (GET/Read): Will display an individual pet document
+// using the URL parameter (which is the document _id)
+router.get('/:id/edit', function (req, res) {
+    db.Team.findById(req.params.id)
+        .then(team => {
+            res.render('edit-team', {
+                team: team
+            })
+        })
+        .catch(() => res.send('404 Error: Page Not Found'))
+})
+
 // Index Route (GET/Read): Will display all teams
 router.get('/', function (req, res) {
     db.Team.find({})
@@ -67,9 +79,17 @@ router.put('/:id', (req, res) => {
         req.body,
         { new: true }
     )
-        .then(team => res.json(team))
+        .then(() => res.redirect(`/teams/${req.params.id}`))
         .catch(() => res.send('404 Error: Page Not Found'))
 })
+
+// router.put('/:id/edit', (req, res) => {
+//     db.Team.updateOne(req.body)
+//         .then(() => {
+//             res.redirect('/teams')
+//         })
+//         .catch(() => res.send('404 Error: Page Not Found'))
+// })
 
 // Destroy Route (DELETE/Delete): This route deletes a pet document 
 // using the URL parameter (which will always be the pet document's ID)
