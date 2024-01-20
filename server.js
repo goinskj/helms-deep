@@ -91,13 +91,13 @@ if (process.env.ON_HEROKU === 'false') {
     })
 }
 
-// The "catch-all" route: Runs for any other URL that doesn't match the above routes
-app.get('*', function (req, res) {
-    res.send('404 Error: Page Not Found')
-})
-
 /* Tell the app to listen on the specified port
 --------------------------------------------------------------- */
 app.listen(process.env.PORT, function () {
     console.log('Express is listening to port', process.env.PORT);
-});
+})
+
+// The "catch-all" route: Runs for any other URL that doesn't match the above routes
+app.get('*', function (req, res) {
+    res.send('404 Error: Page Not Found')
+})

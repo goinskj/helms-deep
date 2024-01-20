@@ -17,15 +17,12 @@ const db = require('../models')
 /* Routes
 --------------------------------------------------------------- */
 
-// Index Route (GET/Read): Will display all teams
-router.get('/', function (req, res) {
-    db.Team.find({})
-        .then(teams => {
-            res.render('team-index', {
-                teams: teams
-            })
-        })
+// New Route (GET/Read): This route renders a form 
+// which the user will fill out to POST (create) a new location
+router.get('/new', (req, res) => {
+    res.render('new-team')
 })
+
 
 // Show Route (GET/Read): Will display an individual pet document
 // using the URL parameter (which is the document _id)
@@ -39,10 +36,14 @@ router.get('/:id', function (req, res) {
         .catch(() => res.send('404 Error: Page Not Found'))
 })
 
-// New Route (GET/Read): This route renders a form 
-// which the user will fill out to POST (create) a new location
-router.get('/new', (req, res) => {
-    res.send('You\'ve hit the new route!')
+// Index Route (GET/Read): Will display all teams
+router.get('/', function (req, res) {
+    db.Team.find({})
+        .then(teams => {
+            res.render('team-index', {
+                teams: teams
+            })
+        })
 })
 
 // Create Route (POST/Create): This route receives the POST request sent from the new route,
@@ -50,7 +51,11 @@ router.get('/new', (req, res) => {
 // and redirects the user to the new team's show page
 router.post('/', (req, res) => {
     db.Team.create(req.body)
-        .then(team => res.json(team))
+        .then(team => {
+            res.render('team-created', {
+                team: team
+            })
+        })
 })
 
 // Update Route (PUT/Update): This route receives the PUT request sent from the edit route, 
