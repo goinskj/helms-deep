@@ -49,3 +49,7 @@ input[type="submit"]:hover {
     color: #333;
     border: 1px solid #333;
 }
+
+.btn a {
+    color: #fff;
+}

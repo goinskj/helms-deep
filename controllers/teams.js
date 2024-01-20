@@ -44,6 +44,7 @@ router.get('/', function (req, res) {
                 teams: teams
             })
         })
+        .catch(() => res.send('404 Error: Page Not Found'))
 })
 
 // Create Route (POST/Create): This route receives the POST request sent from the new route,
@@ -51,11 +52,10 @@ router.get('/', function (req, res) {
 // and redirects the user to the new team's show page
 router.post('/', (req, res) => {
     db.Team.create(req.body)
-        .then(team => {
-            res.render('team-created', {
-                team: team
-            })
+        .then(() => {
+            res.redirect('/teams')
         })
+        .catch(() => res.send('404 Error: Page Not Found'))
 })
 
 // Update Route (PUT/Update): This route receives the PUT request sent from the edit route, 
@@ -68,6 +68,7 @@ router.put('/:id', (req, res) => {
         { new: true }
     )
         .then(team => res.json(team))
+        .catch(() => res.send('404 Error: Page Not Found'))
 })
 
 // Destroy Route (DELETE/Delete): This route deletes a pet document 
@@ -75,6 +76,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     db.Team.findByIdAndDelete(req.params.id)
         .then(team => res.send('You\'ve deleted pet ' + team._id))
+        .catch(() => res.send('404 Error: Page Not Found'))
 })
 
 
