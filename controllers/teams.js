@@ -14,6 +14,13 @@ const router = express.Router()
 --------------------------------------------------------------- */
 const db = require('../models')
 
+
+/* Require the states static data
+--------------------------------------------------------------- */
+const path = require('path');
+const statesData = require(path.join(__dirname, '../public/data/states'));
+
+
 /* Routes
 --------------------------------------------------------------- */
 
@@ -24,7 +31,7 @@ router.get('/new', (req, res) => {
 })
 
 
-// Show Route (GET/Read): Will display an individual pet document
+// Show Route (GET/Read): Will display an individual team document
 // using the URL parameter (which is the document _id)
 router.get('/:id', function (req, res) {
     db.Team.findById(req.params.id)
@@ -33,19 +40,21 @@ router.get('/:id', function (req, res) {
                 team: team
             })
         })
-        .catch(() => res.send('404 Error: Page Not Found'))
+        .catch(() => res.render('404'))
 })
 
-// Show Route (GET/Read): Will display an individual pet document
+// Show Route (GET/Read): Will display an individual team document and allow to edit it
 // using the URL parameter (which is the document _id)
 router.get('/:id/edit', function (req, res) {
     db.Team.findById(req.params.id)
         .then(team => {
             res.render('edit-team', {
-                team: team
+                team: team,
+                usStates: statesData.usStates,
+                canadaProvinces: statesData.canadaProvinces
             })
         })
-        .catch(() => res.send('404 Error: Page Not Found'))
+        .catch(() => res.render('404'))
 })
 
 // Index Route (GET/Read): Will display all teams
@@ -56,7 +65,7 @@ router.get('/', function (req, res) {
                 teams: teams
             })
         })
-        .catch(() => res.send('404 Error: Page Not Found'))
+        .catch(() => res.render('404'))
 })
 
 // Create Route (POST/Create): This route receives the POST request sent from the new route,
@@ -67,11 +76,11 @@ router.post('/', (req, res) => {
         .then(() => {
             res.redirect('/teams')
         })
-        .catch(() => res.send('404 Error: Page Not Found'))
+        .catch(() => res.render('404'))
 })
 
 // Update Route (PUT/Update): This route receives the PUT request sent from the edit route, 
-// edits the specified pet document using the form data,
+// edits the specified team document using the form data,
 // and redirects the user back to the show page for the updated location.
 router.put('/:id', (req, res) => {
     db.Team.findByIdAndUpdate(
@@ -80,23 +89,15 @@ router.put('/:id', (req, res) => {
         { new: true }
     )
         .then(() => res.redirect(`/teams/${req.params.id}`))
-        .catch(() => res.send('404 Error: Page Not Found'))
+        .catch(() => res.render('404'))
 })
 
-// router.put('/:id/edit', (req, res) => {
-//     db.Team.updateOne(req.body)
-//         .then(() => {
-//             res.redirect('/teams')
-//         })
-//         .catch(() => res.send('404 Error: Page Not Found'))
-// })
-
-// Destroy Route (DELETE/Delete): This route deletes a pet document 
-// using the URL parameter (which will always be the pet document's ID)
+// Destroy Route (DELETE/Delete): This route deletes a team document 
+// using the URL parameter (which will always be the team document's ID)
 router.delete('/:id', (req, res) => {
     db.Team.findByIdAndDelete(req.params.id)
-        .then(team => res.send('You\'ve deleted pet ' + team._id))
-        .catch(() => res.send('404 Error: Page Not Found'))
+        .then(team => res.send('You\'ve deleted team ' + team._id))
+        .catch(() => res.render('404'))
 })
 
 
