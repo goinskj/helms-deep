@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'Create a Play | Helms Deep'}) %>
+    <link rel="stylesheet" href="/styles/play-form.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="hero">
+        <h2>Team Play</h2>
+        <h4><i>You're creating a Play for <a href="/teams/<%= team._id %>"><%= team.name %></a></i></h4>
+    </section>
+
+    <form action="/plays/create/<%= team._id %>" method="POST">
+        <label for="playFormation">Play Formation</label><br>
+        <input type="text" id="playFormation" name="playFormation" required><br>
+
+        <label for="playDown">Down</label><br>
+        <input type="text" id="playDown" name="playDown" required><br>
+
+        <label for="playYardsLeft">Yards Left</label><br>
+        <input type="text" id="playYardsLeft" name="playYardsLeft" required><br>
+
+        <label for="playQuarter">Game Quarter</label><br>
+        <input type="text" id="playQuarter" name="playQuarter" required></input><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>

@@ -8,7 +8,6 @@ const connectLiveReload = require("connect-livereload");
 const methodOverride = require('method-override');
 
 
-
 /* Require the db connection, models, and seed data
 --------------------------------------------------------------- */
 const db = require('./models');
@@ -16,6 +15,8 @@ const db = require('./models');
 /* Require the routes in the controllers folder
 --------------------------------------------------------------- */
 const teamsCtrl = require('./controllers/teams')
+const playsCtrl = require('./controllers/plays')
+
 
 /* Create the Express app
 --------------------------------------------------------------- */
@@ -55,6 +56,7 @@ app.use(express.static('public'))
 app.use(methodOverride('_method'));
 
 
+
 /* Mount routes
 --------------------------------------------------------------- */
 app.get('/', function (req, res) {
@@ -67,12 +69,15 @@ app.get('/', function (req, res) {
 })
 
 app.get('/about', function (req, res) {
-    res.send('You\'ve hit the about route')
+    res.render('about')
 })
 
 // This tells our app to look at the `controllers/teams.js` file 
 // to handle all routes that begin with `localhost:3000/teams`
 app.use('/teams', teamsCtrl)
+// This tells our app to look at the `controllers/plays.js` file 
+// to handle all routes that begin with `localhost:3000/plays`
+app.use('/plays', playsCtrl)
 
 // When a GET request is sent to `/seed`, the team collection is seeded
 if (process.env.ON_HEROKU === 'false') {

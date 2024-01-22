@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const playSchema = new mongoose.Schema({
+  photo: { 
+    type: String,
+    required: true 
+  },
   playFormation: {
     type: String,
     required: true
@@ -22,7 +26,10 @@ const playSchema = new mongoose.Schema({
     min: 1,
     max: 4,
     default: 1
-  }
+  },
+  playPrediction: {
+    type: String
+  },
 })
 
 module.exports = playSchema

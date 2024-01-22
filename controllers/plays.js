@@ -30,25 +30,17 @@ router.get('/', (req, res) => {
 	    	for (let team of teams) {
 	        	flatList.push(...team.plays)
 	    	}
-	    	res.json(flatList)
-		}
-	)
+	    	res.render('plays-index', {
+                plays: flatList
+            })
+		})
+        .catch(()=> res.render('404'))
 });
 
 // New Route: GET localhost:3000/plays/new
 router.get('/new/:teamId', (req, res) => {
-    res.send('You\'ve reached the new route. You\'ll be making a new play for pet ' + req.params.teamId)
+    res.render('new-play')
 })
-
-// Create Route: POST localhost:3000/plays/
-router.post('/create/:teamId', (req, res) => {
-    db.Team.findByIdAndUpdate(
-        req.params.teamId,
-        { $push: { plays: req.body } },
-        { new: true }
-    )
-        .then(team => res.json(team))
-});
 
 // Show Route: GET localhost:3000/plays/:id
 router.get('/:id', (req, res) => {
@@ -59,8 +51,22 @@ router.get('/:id', (req, res) => {
         .then(team => {
 	        // format query results to appear in one object, 
 	        // rather than an object containing an array of one object
-            res.json(team.plays[0])
+            res.render('play-details', {
+                play: team.plays[0],
+                team: team
+            })
         })
+        .catch(() => res.render('404'))
+});
+
+// Create Route: POST localhost:3000/plays/
+router.post('/create/:teamId', (req, res) => {
+    db.Team.findByIdAndUpdate(
+        req.params.teamId,
+        { $push: { plays: req.body } },
+        { new: true }
+    )
+        .then(team => res.json(team))
 });
 
 // Destroy Route: DELETE localhost:3000/plays/:id

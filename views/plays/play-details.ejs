@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs', {title: 'My Plays | Helms Deep'}) %>
+    <link rel="stylesheet" href="/styles/play-details.css">
+</head>
+
+<body>
+    <%- include('../partials/nav.ejs') %>
+
+    <section class="plays">
+        <h1>Play: <%= play._id %></h1>
+        <table>
+            <tr>
+                <th>
+                    <h2>Team:</h2>
+                </th>
+                <td>
+                    <h2><%= team %></h2>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h2>Image:</h2>
+                </th>
+                <td>
+                    <img src="<%= play.photo %>">
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h2>Formation:</h2>
+                </th>
+                <td>
+                    <h2><%= play.playFormation %></h2>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h2>Down:</h2>
+                </th>
+                <td>
+                    <h2><%= play.playDown %></h2>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h2>Yards left:</h2>
+                </th>
+                <td>
+                    <h2><%= play.playYardsLeft %></h2>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h2>Quarter:</h2>
+                </th>
+                <td>
+                    <h2><%= play.playQuarter %></h2>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <h2>Prediction:</h2>
+                </th>
+                <td>
+                    <h2><%= play.playPrediction %></h2>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section class="actions">
+        <button class="btn"><a href="/plays/<%= play._id %>/edit">Edit</a></button>
+        <form method="POST" action="/plays/<%= play._id %>?_method=DELETE">
+            <input class="btn" type="submit" value="Delete" />
+        </form>
+    </section>
+
+    <%- include('../partials/footer.ejs') %>
+</body>
+
+</html>
