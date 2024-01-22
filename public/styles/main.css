@@ -1,34 +1,33 @@
 /* Reset styles for cross-browser consistency */
 * {
-    box-sizing: border-box;
+    box-sizing: content-box;
     margin: 0;
     padding: 0;
-    scrollbar-color: #333;
+    scrollbar-color: #336699;
     scrollbar-width: 10px;
 }
 
 *::-webkit-scrollbar {
-    visibility: hidden;
     width: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: #333;
+    background-color: #336699;
     border-radius: 2px;
 }
 
 /* General styles */
 body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #f7f7f7;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+    background-color: #f0f0f0;
     min-height: 100vh;
 }
 
 a {
-    color: #333;
+    color: #336699;
     text-decoration: none;
 }
 
@@ -41,17 +40,19 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #fff;
-    padding: 1rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    color: #336699;
 }
 
 h1 a:hover {
     text-decoration: none;
+    color: #555;
 }
 
 nav ul {
@@ -60,11 +61,12 @@ nav ul {
 }
 
 nav li:not(:last-child) {
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
 nav a {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    color: #444;
 }
 
 /* Hero section styles */
@@ -73,34 +75,37 @@ nav a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #e8f1f2;
-    height: 40vh;
+    background-color: #dfe6e9;
+    height: 45vh;
 }
 
 .hero h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
     text-align: center;
+    color: #336699;
 }
 
 .hero h3 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     text-align: center;
+    color: #555;
 }
 
 .hero h4 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     text-align: center;
+    color: #777;
 }
 
 .btn {
     display: inline-block;
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
-    background-color: #333;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.4rem;
+    background-color: #336699;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -111,9 +116,9 @@ nav a {
 /* Footer styles */
 footer {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: #333;
-    width: calc(100vw - 1rem);
+    width: calc(100vw - 1.5rem);
 }
 
 footer * {

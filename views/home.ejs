@@ -10,16 +10,16 @@
     <%- include('./partials/nav.ejs') %>
 
     <main>
-        <section class="hero">
-            <h2>Associate formations with deep balls.</h2>
-            <a href="/teams" class="btn">Try Now!</a>
-        </section>
-
         <section class="about">
             <h2>About Us</h2>
             <p>Welcome to Helms Deep: your premier solution for defensive personnel seeking an edge in the strategic world of football. Helms Deep is a cutting-edge tool designed to empower defensive teams by providing insights into opposing offensive formations, with a specific focus on deep ball plays.
             </p>
             <a href="/about" class="btn">Learn More</a>
+        </section>
+
+        <section class="hero">
+            <h2>Associate formations with deep balls.</h2>
+            <a href="/teams" class="btn">Try Now!</a>
         </section>
 
         <section class="featured-teams">
@@ -28,7 +28,7 @@
                 <% for (let team of teams) { %>
                 <li>
                     <figure>
-                        <img src="<%= team.photo %>" alt="mascott">
+                        <img src="<%= team.photo %>" alt="mascot">
                     </figure>
                     <figcaption>
                         <div class="featured-info">
@@ -42,6 +42,7 @@
                 <% } %>
             </ul>
         </section>
+
     </main>
 
     <%- include('./partials/footer.ejs') %>
