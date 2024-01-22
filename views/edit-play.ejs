@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs', {title: 'Edit Play | Helms Deep'}) %>
+    <link rel="stylesheet" href="/styles/play-form.css">
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <section class="hero">
+        <h2>Edit Play</h2>
+        <h4><i>Make changes to the play details</i></h4>
+    </section>
+
+    <form method="POST" action="/plays/<%= play._id %>?_method=PUT">
+        <!-- Play Formation input -->
+        <label for="playFormation">Play Formation:</label>
+        <input type="text" id="playFormation" name="playFormation" value="<%= play.playFormation %>" required>
+        <br>
+
+        <!-- Play Down input -->
+        <label for="playDown">Down:</label>
+        <input type="text" id="playDown" name="playDown" value="<%= play.playDown %>" required>
+        <br>
+
+        <!-- Yards Left input -->
+        <label for="playYardsLeft">Yards Left:</label>
+        <input type="text" id="playYardsLeft" name="playYardsLeft" value="<%= play.playYardsLeft %>" required>
+        <br>
+
+        <!-- Game Quarter input -->
+        <label for="playQuarter">Game Quarter:</label>
+        <input type="text" id="playQuarter" name="playQuarter" value="<%= play.playQuarter %>" required>
+        <br>
+
+        <!-- Submit button -->
+        <button class="btn" type="submit">Update Play</button>
+    </form>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

@@ -18,7 +18,7 @@
             <p><strong>State:</strong> <%= team.state %></p>
         </section>
         <section class="actions">
-            <button class="btn"><a href="/plas/new/<%= team._id %>/">Create Play</a></button>
+            <button class="btn"><a href="/plays/new/<%= team._id %>/">Create Play</a></button>
             <button class="btn"><a href="/teams/<%= team._id %>/edit">Edit</a></button>
             <form method="POST" action="/teams/<%= team._id %>?_method=DELETE">
                 <input class="btn" type="submit" value="Delete" />

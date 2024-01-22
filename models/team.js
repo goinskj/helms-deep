@@ -10,7 +10,6 @@ const teamSchema = new mongoose.Schema({
     photo: { type: String },
     city: { type: String, required: true },
     state: { type: String, maxLength: 2, required: true },
-    isFeatured: { type: Boolean, default: false },
     dateAdded: { type: Date, default: Date.now },
     // the play array can only accept objects that match the criteria specified
     // in the playSchema. In other words, the play array can only accept plays

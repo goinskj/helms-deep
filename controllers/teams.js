@@ -89,7 +89,10 @@ router.put('/:id', (req, res) => {
         { new: true }
     )
         .then(() => res.redirect(`/teams/${req.params.id}`))
-        .catch(() => res.render('404'))
+        .catch((err) => {
+            console.error('Error updating team:', err);
+            res.render('404')
+        })
 })
 
 // Destroy Route (DELETE/Delete): This route deletes a team document 

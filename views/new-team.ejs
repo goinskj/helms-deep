@@ -14,7 +14,7 @@
         <h4><i>Helping defenses anticipate deep balls, one snap at a time</i></h4>
     </section>
 
-    <form method="POST" action="/teams">
+    <form method="POST" action="/teams/<%= team._id %>?_method=PUT">
         <!-- Name input -->
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>

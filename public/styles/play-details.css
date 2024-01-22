@@ -34,3 +34,7 @@ td {
 td h2 {
     font-weight: 100;
 }
+
+.btn a {
+    color: #fff;
+}
