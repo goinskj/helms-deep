@@ -5,6 +5,10 @@
 
 Technologies Used: HTML, CSS, JavaScript, MongoDB, Mongoose, Node.JS, Express.JS
 
+Routes: 
+
+<img width="654" alt="Screen Shot 2024-01-22 at 6 30 47 AM" src="https://github.com/goinskj/helms-deep/assets/42850416/ab29a285-3be6-4eff-96d3-6169d27191c4">
+
 Installation instructions: 
 1. Install npm
 2. Install MongoDB
@@ -12,6 +16,7 @@ Installation instructions:
 
 User Stories:
 - Defensive coordinators and players who want to keep data associated with deep balls and formation on past opponents.
+
 
  Unsolved Problems
  - edit PUT route has an error. Plays update fine, but the updated plays list is null on the resulting route
