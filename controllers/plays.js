@@ -35,7 +35,7 @@ router.get('/', (req, res) => {
             })
 		})
         .catch(()=> res.render('404'))
-});
+})
 
 // Show Route: GET localhost:3000/plays/:id
 router.get('/:id', (req, res) => {
@@ -90,13 +90,13 @@ router.post('/create/:teamId', (req, res) => {
         { new: true }
     )
         .then(team => res.redirect('/plays'))
-});
+})
 
 // Update Route (PUT/Update): This route receives the PUT request sent from the edit route, 
 // edits the specified team document using the form data,
 // and redirects the user back to the show page for the updated location.
 router.put('/:id', (req, res) => {
-    const playId = req.params.id;
+    const playId = req.params.id
     db.Team.findOneAndUpdate(
         { 'plays._id': playId },
         { $set: { 'plays.$': req.body } },
@@ -105,28 +105,28 @@ router.put('/:id', (req, res) => {
     .then(updatedTeam => {
         // Check if updatedTeam is null
         if (!updatedTeam || !updatedTeam.plays) {
-            console.error('Team not found or plays array is missing');
-            return res.render('404');
+            console.error('Team not found or plays array is missing')
+            return res.render('404')
         }
 
-        const updatedPlay = updatedTeam.plays.find(play => play._id.toString() === playId);
+        const updatedPlay = updatedTeam.plays.find(play => play._id.toString() === playId)
 
         // Log relevant information for debugging
-        console.log('playId:', playId);
-        console.log('updatedTeam:', updatedTeam);
-        console.log('updatedPlay:', updatedPlay);
+        console.log('playId:', playId)
+        console.log('updatedTeam:', updatedTeam)
+        console.log('updatedPlay:', updatedPlay)
 
         // Check if updatedPlay is undefined
         if (!updatedPlay) {
-            console.error('Play not found in updatedTeam.plays array');
-            return res.render('404');
+            console.error('Play not found in updatedTeam.plays array')
+            return res.render('404')
         }
 
-        res.redirect(`/plays/${updatedPlay._id}`);
+        res.redirect(`/plays/${updatedPlay._id}`)
     })
     .catch((err) => {
-        console.error('Error updating play:', err);
-        res.render('404');
+        console.error('Error updating play:', err)
+        res.render('404')
     })
 })
 
@@ -140,7 +140,7 @@ router.delete('/:id', (req, res) => {
     )
         .then(team => res.send('You\'ve deleted PLAY ' + req.params.id))
         .catch(() => res.render('404'))
-});
+})
 
 
 /* Export these routes so that they are accessible in `server.js`
